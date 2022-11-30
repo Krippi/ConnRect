@@ -3,5 +3,6 @@ public class Main {
         System.out.println("Du bist scheiße");
         System.out.println("Du auch!");
         System.out.println("Test");
+        System.out.println("Test2");
     }
 }
