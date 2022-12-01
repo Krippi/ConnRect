@@ -24,4 +24,11 @@ public class Rectangle{
         midPoint.y = position.y + HEIGHT/2;
         return midPoint;
     }
+    // return true, wenn Punkt im Rechteck liegt
+    public boolean pointInRect(Point p){
+        return p.x <= this.position.x+WIDTH && 
+               p.x >= this.position.x && 
+               p.y <= this.position.y+HEIGHT && 
+               p.y >= this.position.y;
+    }
 }
