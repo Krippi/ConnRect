@@ -1,5 +1,5 @@
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Frame window = new Frame("Connect Rectangles");
         
     }
@@ -19,7 +19,7 @@ ToDo Marius:
 2 - Klasse Frame erstellen
 3 - Panel & Frame erzeugen
 4 - Rechtecke erzeugen in MouseListener
-5 - 
-
+5 - "NEU" Rectangle soll eine Methode habe die einen Punkt
+    bekommt und sagt ob dieser in dem Rechteck ist oder nicht
 
 */
