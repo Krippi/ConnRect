@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel implements MouseListener {
@@ -65,10 +66,14 @@ public class Panel extends JPanel implements MouseListener {
 
             for (Linepart part: connectionLine.getLinepartList()) {
                 if (part.pointInLinepart(e.getPoint())) {
-                    // connectionLine.showLinetypes();
+                    showLinetypes();
                 }
             }
         }
+    }
+
+    private void showLinetypes() {
+        // get linetypes & print in Combo-Box
     }
 
     @Override
