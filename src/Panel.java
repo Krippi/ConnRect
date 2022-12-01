@@ -50,7 +50,9 @@ public class Panel extends JPanel implements MouseListener {
             }
 
             for (Linepart part: connectionLine.getLinepartList()) {
-                //part.pointInRect()
+                if (part.pointInLinepart(e.getPoint())){
+                    // connectionLine.showLinetypes();
+                }
             }
         }
     }
@@ -59,7 +61,7 @@ public class Panel extends JPanel implements MouseListener {
     public void mouseReleased(MouseEvent e) {
         if(movingRectState){
             movingRectState = false;
-            //movingRect.setPosition = e.getPoint();
+            movingRect.setPosition = e.getPoint();
             drawRectangle(movingRect);
             drawLine();
 

@@ -16,4 +16,12 @@ public class Linepart {
     public Point getStartPoint() {
         return startPoint;
     }
+
+    public boolean pointInLinepart(Point p){
+        final int toleranz = 2;
+        return p.x >= startPoint.x+toleranz && 
+               p.x <= endPoint.x+toleranz && 
+               p.y >= startPoint.y+toleranz &&
+               p.y <= endPoint.y+toleranz;
+    }
 }
