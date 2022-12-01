@@ -31,4 +31,8 @@ public class Rectangle{
                p.y <= this.position.y+HEIGHT && 
                p.y >= this.position.y;
     }
+
+    public void setPosition(Point newPos){
+        this.position = newPos;
+    }
 }
