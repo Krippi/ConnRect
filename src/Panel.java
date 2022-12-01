@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel implements MouseListener {
-    ArrayList <Rectangle> rectList = new ArrayList<>();
-    Line connectionLine;
-    Rectangle movingRect;
-    boolean movingRectState = false;
+    private ArrayList <Rectangle> rectList = new ArrayList<>();
+    private Line connectionLine;
+    private Rectangle movingRect;
+    private boolean movingRectState = false;
 
     public Panel(){
         addMouseListener(this);
@@ -45,6 +45,7 @@ public class Panel extends JPanel implements MouseListener {
                 if(rectangle.pointInRect(e.getPoint())){
                     movingRectState = true;
                     movingRect = rectangle;
+                    break;
                 }
             }
         }
@@ -56,6 +57,8 @@ public class Panel extends JPanel implements MouseListener {
             movingRectState = false;
             //movingRect.setPosition = e.getPoint();
             drawRectangle(movingRect);
+            drawLine();
+
             movingRect = null;
         }
     }
