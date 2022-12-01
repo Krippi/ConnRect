@@ -73,17 +73,4 @@ public class Panel extends JPanel implements MouseListener {
 
     }
 
-
-
-
-
-
-
-    /*mouseclicked(){
-        // Rechteck(e) erzeugen
-        if (rectList.size() == 2){
-        }else{
-            rectList.add(new Rectangle(pos));
-        }
-    }*/
 }
