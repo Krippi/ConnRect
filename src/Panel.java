@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -15,13 +16,26 @@ public class Panel extends JPanel implements MouseListener {
     }
 
     private void drawRectangle(Rectangle rect){
-        getGraphics().drawRect(rect.getPosition().x, rect.getPosition().y, rect.getHeight(), rect.getWidth());
+        Graphics2D graphics2D = (Graphics2D)getGraphics();
+        graphics2D.setStroke(new BasicStroke(2));
+        graphics2D.setColor(Color.CYAN);
+        graphics2D.fillRect(rect.getPosition().x, rect.getPosition().y, rect.getHeight(), rect.getWidth());
+        //graphics2D.drawRect(rect.getPosition().x, rect.getPosition().y, rect.getHeight(), rect.getWidth());
     }
 
     private void drawLine(){
         for (Linepart part : connectionLine.getLinepartList()) {
-            getGraphics().drawLine(part.getStartPoint().x, part.getStartPoint().y,part.getEndPoint().x, part.getEndPoint().y);
+            Graphics2D graphics2D = (Graphics2D)getGraphics();
+            graphics2D.setStroke(new BasicStroke(3));
+            graphics2D.setRenderingHint(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            graphics2D.drawLine(part.getStartPoint().x, part.getStartPoint().y,part.getEndPoint().x, part.getEndPoint().y);
         }
+    }
+
+    private void redraw(){
+        getGraphics().clearRect(0, 0, getWidth(), getHeight());
     }
 
     @Override
@@ -50,7 +64,7 @@ public class Panel extends JPanel implements MouseListener {
             }
 
             for (Linepart part: connectionLine.getLinepartList()) {
-                if (part.pointInLinepart(e.getPoint())){
+                if (part.pointInLinepart(e.getPoint())) {
                     // connectionLine.showLinetypes();
                 }
             }
@@ -60,9 +74,14 @@ public class Panel extends JPanel implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         if(movingRectState){
+            redraw();
             movingRectState = false;
             movingRect.setPosition(e.getPoint());
-            drawRectangle(movingRect);
+            for (Rectangle rect:rectList) {
+                drawRectangle(rect);
+            }
+
+            connectionLine = new Line(rectList.get(0),rectList.get(1));
             drawLine();
 
             movingRect = null;
