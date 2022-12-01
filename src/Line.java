@@ -17,7 +17,9 @@ public class Line {
 
                 linepartList.add(new Linepart(start, end));
                 break;
-            case "anders":
+            case "angled":
+                //First Line
+
                 break;
         }
 

@@ -45,8 +45,12 @@ public class Panel extends JPanel implements MouseListener {
                 if(rectangle.pointInRect(e.getPoint())){
                     movingRectState = true;
                     movingRect = rectangle;
-                    break;
+                    return;
                 }
+            }
+
+            for (Linepart part: connectionLine.getLinepartList()) {
+                //part.pointInRect()
             }
         }
     }
