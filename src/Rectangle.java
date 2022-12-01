@@ -2,8 +2,8 @@ import java.awt.Point;
 
 public class Rectangle{
     private Point position;
-    private int WIDTH = 30;
-    private int HEIGHT = 30;
+    private int WIDTH = 30;  // statisch, ggf. dynamisch als Erweiterung
+    private int HEIGHT = 30; // statisch, ggf. dynamisch als Erweiterung
     public Rectangle(Point position){
         this.position = (Point)position.clone();
     }
