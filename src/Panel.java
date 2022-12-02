@@ -2,8 +2,6 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel implements MouseListener {
@@ -72,8 +70,9 @@ public class Panel extends JPanel implements MouseListener {
         }
     }
 
-    private void showLinetypes() {
-        // get linetypes & print in Combo-Box
+    public void showLinetypes() {
+        System.out.println("Click on Line");
+        
     }
 
     @Override
