@@ -1,19 +1,22 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-public class Panel extends JPanel implements MouseListener {
+public class Panel extends JPanel implements MouseListener, MouseMotionListener {
     private ArrayList <Rectangle> rectList = new ArrayList<>();
     private Line connectionLine;
     private Rectangle movingRect;
     private boolean movingRectState = false;
+    private Point dragPoint;
 
     public Panel(){
         addMouseListener(this);
+        addMouseMotionListener(this);
     }
 
     private void drawRectangle(Rectangle rect){
@@ -39,14 +42,18 @@ public class Panel extends JPanel implements MouseListener {
         getGraphics().clearRect(0, 0, getWidth(), getHeight());
     }
 
+    private void showLinetypes() {
+        // get linetypes & print in Combo-Box
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        System.out.println("Clicked");
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println("Click");
+        System.out.println("Pressed");
         if(rectList.size() <= 1){
             Rectangle newRectangle = new Rectangle(e.getPoint());
             rectList.add(newRectangle);
@@ -60,6 +67,7 @@ public class Panel extends JPanel implements MouseListener {
                 if(rectangle.pointInRect(e.getPoint())){
                     movingRectState = true;
                     movingRect = rectangle;
+                    dragPoint = new Point(e.getPoint().x - movingRect.getPosition().x, e.getPoint().y - movingRect.getPosition().y);
                     return;
                 }
             }
@@ -72,23 +80,24 @@ public class Panel extends JPanel implements MouseListener {
         }
     }
 
-    private void showLinetypes() {
-        // get linetypes & print in Combo-Box
-    }
-
     @Override
     public void mouseReleased(MouseEvent e) {
         if(movingRectState){
             redraw();
             movingRectState = false;
-            movingRect.setPosition(e.getPoint());
+
+            int x = e.getPoint().x - dragPoint.x;
+            int y = e.getPoint().y - dragPoint.y;
+            movingRect.setPosition( new Point(x,y));
+
             for (Rectangle rect:rectList) {
-                drawRectangle(rect);
+               drawRectangle(rect);
             }
 
             connectionLine = new Line(rectList.get(0),rectList.get(1));
             drawLine();
 
+            dragPoint = null;
             movingRect = null;
         }
     }
@@ -103,4 +112,26 @@ public class Panel extends JPanel implements MouseListener {
 
     }
 
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        System.out.println("Drag");
+        if(movingRectState){
+            redraw();
+            int x = e.getPoint().x - dragPoint.x;
+            int y = e.getPoint().y - dragPoint.y;
+            movingRect.setPosition( new Point(x,y));
+
+            for (Rectangle rect:rectList) {
+                drawRectangle(rect);
+            }
+
+            connectionLine = new Line(rectList.get(0),rectList.get(1));
+            drawLine();
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
 }
