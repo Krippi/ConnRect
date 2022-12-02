@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-import javax.swing.ComboBoxModel;
-
 public class Line {
     public static enum linetypes{
         STRAIGHT,

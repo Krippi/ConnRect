@@ -3,8 +3,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel implements MouseListener, MouseMotionListener {
