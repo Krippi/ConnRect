@@ -42,18 +42,19 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         getGraphics().clearRect(0, 0, getWidth(), getHeight());
     }
 
-    private void showLinetypes() {
+    private void showLinetypes(Point location) {
         // get linetypes & print in Combo-Box
+        System.out.println("Test");
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Clicked");
+        //System.out.println("Clicked");
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println("Pressed");
+        //System.out.println("Pressed");
         if(rectList.size() <= 1){
             Rectangle newRectangle = new Rectangle(e.getPoint());
             rectList.add(newRectangle);
@@ -74,7 +75,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
             for (Linepart part: connectionLine.getLinepartList()) {
                 if (part.pointInLinepart(e.getPoint())) {
-                    showLinetypes();
+                    showLinetypes(e.getPoint());
                 }
             }
         }
@@ -114,7 +115,6 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println("Drag");
         if(movingRectState){
             redraw();
             int x = e.getPoint().x - dragPoint.x;

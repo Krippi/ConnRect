@@ -75,11 +75,11 @@ public class Line {
         {
             x = rect2.getPosition().x;
             y = rect2.getPosition().y + (rect2.getHeight() / 2);
-            start = new Point(x,y);
+            start = new Point(x - 1,y);
 
             x = x - xDistanceBetween;
             end = new Point(x - 1,y);
-            endThird = end;
+            endThird = (Point)end.clone();
 
             linepartList.add(new Linepart(start, end));
         }
@@ -124,7 +124,7 @@ public class Line {
 
             y = y - yDistanceBetween;
             end = new Point(x,y);
-            endThird = end;
+            endThird = (Point)end.clone();
             endThird.y -= 1;
 
             linepartList.add(new Linepart(start, end));
