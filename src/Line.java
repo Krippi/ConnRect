@@ -139,10 +139,8 @@ public class Line {
         return linepartList;
     }
 
-    public linetypes getLinetypes() {
-        // enum mit linetypes returnen
-        return null;
+    public void setLinetype(linetypes selectedItem) {
+        linetype = selectedItem;
     }
-
 
 }

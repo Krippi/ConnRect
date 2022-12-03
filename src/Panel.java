@@ -3,6 +3,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel implements MouseListener, MouseMotionListener {
@@ -42,6 +45,22 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     private void showLinetypes(Point location) {
         // get linetypes & print in Combo-Box
+        JComboBox<String> menu = new JComboBox<>();
+        menu.setSize(50, 50);
+        menu.setLocation(location);
+        
+        menu.setModel(new DefaultComboBoxModel(Line.linetypes.values()));
+        Line.linetypes selection = (Line.linetypes)menu.getSelectedItem();
+        //Line.setLinetype(selection);
+        //muss noch gefixt werden, Fehler mit static?!
+
+        // alter Code, wenn obere funktioniert, diesen löschen
+/*         for (Line.linetypes linetype : Line.linetypes.values()) {
+            menu.addItem(linetype.name());
+        }
+        add(menu);
+        menu.showPopup();
+        Line.setLinetype(menu.getSelectedItem()); */
         System.out.println("Test");
     }
 

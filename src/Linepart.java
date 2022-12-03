@@ -18,6 +18,7 @@ public class Linepart {
         return startPoint;
     }
 
+    // noch zu prüfen, Linie sehr schwer anzuklicken :/
     public boolean pointInLinepart(Point p){
         final int toleranz = 2;
         return p.x >= startPoint.x+toleranz && 
