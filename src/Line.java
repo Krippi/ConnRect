@@ -139,8 +139,15 @@ public class Line {
         return linepartList;
     }
 
-    public void setLinetype(linetypes selectedItem) {
-        linetype = selectedItem;
+    public void setLinetype(String selectedItem) {
+        switch (selectedItem) {
+            case "STRAIGHT":
+                linetype = linetypes.STRAIGHT;    
+                break;
+            case "ANGLED":
+                linetype = linetypes.ANGLED;  
+                break;
+        }
     }
 
 }
