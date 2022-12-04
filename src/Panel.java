@@ -50,14 +50,10 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         menu.setLocation(location);
         
         menu.setModel(new DefaultComboBoxModel(Line.linetypes.values()));
-        
-        Line.linetypes selection = (Line.linetypes)menu.getSelectedItem();
-         for (Line.linetypes linetype : Line.linetypes.values()) {
-            menu.addItem(linetype.name());
-        }
+    
         add(menu);
         menu.showPopup();
-        Line.setLinetype(menu.getSelectedItem().toString()); 
+        //Line.setLinetype(menu.getSelectedItem().toString()); 
         System.out.println("Linepart clicked");
     }
 
