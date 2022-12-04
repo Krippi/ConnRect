@@ -50,18 +50,15 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         menu.setLocation(location);
         
         menu.setModel(new DefaultComboBoxModel(Line.linetypes.values()));
+        
         Line.linetypes selection = (Line.linetypes)menu.getSelectedItem();
-        //Line.setLinetype(selection);
-        //muss noch gefixt werden, Fehler mit static?!
-
-        // alter Code, wenn obere funktioniert, diesen löschen
-/*         for (Line.linetypes linetype : Line.linetypes.values()) {
+         for (Line.linetypes linetype : Line.linetypes.values()) {
             menu.addItem(linetype.name());
         }
         add(menu);
         menu.showPopup();
-        Line.setLinetype(menu.getSelectedItem()); */
-        System.out.println("Test");
+        Line.setLinetype(menu.getSelectedItem().toString()); 
+        System.out.println("Linepart clicked");
     }
 
     @Override

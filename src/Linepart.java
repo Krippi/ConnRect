@@ -18,12 +18,16 @@ public class Linepart {
         return startPoint;
     }
 
-    // noch zu prüfen, Linie sehr schwer anzuklicken :/
+    // Toleranz ok, 3. Part nicht klickbar -> mysterious?!
     public boolean pointInLinepart(Point p){
-        final int toleranz = 2;
-        return p.x >= startPoint.x+toleranz && 
+        final int toleranz = 5;
+/*         int spxt = startPoint.x-toleranz;
+        int epxt = endPoint.x+toleranz;
+        int spyt = startPoint.y-toleranz;
+        int epyt = endPoint.y+toleranz; */
+        return p.x >= startPoint.x-toleranz && 
                p.x <= endPoint.x+toleranz && 
-               p.y >= startPoint.y+toleranz &&
+               p.y >= startPoint.y-toleranz &&
                p.y <= endPoint.y+toleranz;
     }
 }
