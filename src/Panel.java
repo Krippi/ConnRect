@@ -13,12 +13,31 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     private boolean movingRectState = false;
     private Point dragPoint;
 
-    JComboBox menu = new JComboBox(Line.linetypes.values());
-
+    JComboBox menu;
 
     public Panel(){
         addMouseListener(this);
         addMouseMotionListener(this);
+
+        menu = new JComboBox(Line.linetypes.values());
+        //menu.setSize(100, 50);
+        menu.setPreferredSize(new Dimension(100,50));
+        //menu.setLightWeightPopupEnabled(false);
+        menu.setVisible(false);
+        
+        // get linetypes & print in Combo-Box
+        menu.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    System.out.println(e.getItem());
+                    activeLinetype = (Line.linetypes)e.getItem();
+                    //connectionLine.setLinetype((Line.linetypes) e.getItem());
+                    menu.setVisible(false);
+                }
+            }
+        });
+        add(menu);
     }
 
     private void drawRectangle(Rectangle rect){
@@ -46,26 +65,10 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     private void showLinetypes(Point location) {
-        // get linetypes & print in Combo-Box
-        menu.setSize(100, 50);
         menu.setLocation(location);
-        menu.setLightWeightPopupEnabled(false);
         //menu.setModel(new DefaultComboBoxModel(Line.linetypes.values()));
+        menu.setVisible(true);
 
-        menu.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if(e.getStateChange() == ItemEvent.SELECTED){
-                    System.out.println(e.getItem());
-                    activeLinetype = (Line.linetypes)e.getItem();
-                    //connectionLine.setLinetype((Line.linetypes) e.getItem());
-                }
-            }
-        });
-
-        add(menu);
-
-        update(getGraphics());
     }
 
     @Override
