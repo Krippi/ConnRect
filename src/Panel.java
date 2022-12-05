@@ -2,16 +2,18 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel implements MouseListener, MouseMotionListener {
     private ArrayList <Rectangle> rectList = new ArrayList<>();
     private Line connectionLine;
+    private Line.linetypes activeLinetype = Line.linetypes.STRAIGHT;
     private Rectangle movingRect;
     private boolean movingRectState = false;
     private Point dragPoint;
+
+    JComboBox menu = new JComboBox(Line.linetypes.values());
 
 
     public Panel(){
@@ -28,6 +30,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     private void drawLine(){
+        connectionLine = new Line(rectList.get(0),rectList.get(1),activeLinetype);
         for (Linepart part : connectionLine.getLinepartList()) {
             Graphics2D graphics2D = (Graphics2D)getGraphics();
             graphics2D.setStroke(new BasicStroke(3));
@@ -44,7 +47,6 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     private void showLinetypes(Point location) {
         // get linetypes & print in Combo-Box
-        JComboBox menu = new JComboBox(Line.linetypes.values());
         menu.setSize(100, 50);
         menu.setLocation(location);
         menu.setLightWeightPopupEnabled(false);
@@ -55,7 +57,8 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
                     System.out.println(e.getItem());
-                    connectionLine.setLinetype((Line.linetypes) e.getItem());
+                    activeLinetype = (Line.linetypes)e.getItem();
+                    //connectionLine.setLinetype((Line.linetypes) e.getItem());
                 }
             }
         });
@@ -79,7 +82,6 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             drawRectangle(newRectangle);
         }
         if(rectList.size() == 2 && connectionLine == null){
-            connectionLine = new Line(rectList.get(0),rectList.get(1));
             drawLine();
         }else if(rectList.size() == 2){
             for (Rectangle rectangle : rectList) {
@@ -113,7 +115,6 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                drawRectangle(rect);
             }
 
-            connectionLine = new Line(rectList.get(0),rectList.get(1));
             drawLine();
 
             dragPoint = null;
@@ -143,7 +144,6 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
                 drawRectangle(rect);
             }
 
-            connectionLine = new Line(rectList.get(0),rectList.get(1));
             drawLine();
         }
     }

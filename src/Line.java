@@ -7,11 +7,9 @@ public class Line {
         STRAIGHT,
         ANGLED
     }
-    //private String linetype = "STRAIGHT";
-    private linetypes linetype = linetypes.STRAIGHT;
     private ArrayList<Linepart> linepartList = new ArrayList<>();
 
-    public Line(Rectangle rect1, Rectangle rect2){
+    public Line(Rectangle rect1, Rectangle rect2, linetypes linetype){
         switch (linetype){
             case STRAIGHT:
                 createStraightLine(rect1, rect2);
@@ -139,10 +137,6 @@ public class Line {
 
     public ArrayList<Linepart> getLinepartList() {
         return linepartList;
-    }
-
-    public void setLinetype(linetypes linetype) {
-        this.linetype = linetype;
     }
 
 }
