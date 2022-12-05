@@ -1,4 +1,5 @@
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 
 public class Frame extends JFrame{
     public Frame(String title) {
@@ -10,6 +11,7 @@ public class Frame extends JFrame{
 
         Panel panel = new Panel();
         add(panel);
+
     }
 
 }

@@ -2,11 +2,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Line {
-    public static enum linetypes{
+    //private String[] linetypes = {"STRAIGHT", "ANGLED"};
+    public enum linetypes{
         STRAIGHT,
-        ANGLED,
-    };
-    private linetypes linetype = linetypes.ANGLED;
+        ANGLED
+    }
+    //private String linetype = "STRAIGHT";
+    private linetypes linetype = linetypes.STRAIGHT;
     private ArrayList<Linepart> linepartList = new ArrayList<>();
 
     public Line(Rectangle rect1, Rectangle rect2){
@@ -139,15 +141,8 @@ public class Line {
         return linepartList;
     }
 
-    public void setLinetype(String selectedItem) {
-        switch (selectedItem) {
-            case "STRAIGHT":
-                linetype = linetypes.STRAIGHT;    
-                break;
-            case "ANGLED":
-                linetype = linetypes.ANGLED;  
-                break;
-        }
+    public void setLinetype(linetypes linetype) {
+        this.linetype = linetype;
     }
 
 }

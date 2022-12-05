@@ -1,7 +1,5 @@
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
@@ -14,6 +12,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     private Rectangle movingRect;
     private boolean movingRectState = false;
     private Point dragPoint;
+
 
     public Panel(){
         addMouseListener(this);
@@ -45,16 +44,25 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     private void showLinetypes(Point location) {
         // get linetypes & print in Combo-Box
-        JComboBox<String> menu = new JComboBox<>();
-        menu.setSize(50, 50);
+        JComboBox menu = new JComboBox(Line.linetypes.values());
+        menu.setSize(100, 50);
         menu.setLocation(location);
-        
-        menu.setModel(new DefaultComboBoxModel(Line.linetypes.values()));
-    
+        menu.setLightWeightPopupEnabled(false);
+        //menu.setModel(new DefaultComboBoxModel(Line.linetypes.values()));
+
+        menu.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    System.out.println(e.getItem());
+                    connectionLine.setLinetype((Line.linetypes) e.getItem());
+                }
+            }
+        });
+
         add(menu);
-        menu.showPopup();
-        //Line.setLinetype(menu.getSelectedItem().toString()); 
-        System.out.println("Linepart clicked");
+
+        update(getGraphics());
     }
 
     @Override
