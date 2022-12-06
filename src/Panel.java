@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
 
 public class Panel extends JPanel implements MouseListener, MouseMotionListener {
@@ -13,26 +12,22 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     private Point dragPoint;
     private Point lineClickedPoint;
 
-    JComboBox menu;
+    JComboBox<Line.linetypes> menu;
 
     public Panel(){
         addMouseListener(this);
         addMouseMotionListener(this);
 
-        menu = new JComboBox(Line.linetypes.values());
+        menu = new JComboBox<>(Line.linetypes.values());
 
-        //menu.setSize(100, 50);
-        //menu.setPreferredSize(new Dimension(100,50));
-        //menu.setLightWeightPopupEnabled(false);
         menu.setVisible(false);
-        // get linetypes & print in Combo-Box
+        // get linetypes & print in Combo-Box, nicht sichtbar
         menu.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
                     lineClickedPoint = null;
                     activeLinetype = (Line.linetypes)e.getItem();
-                    //connectionLine.setLinetype((Line.linetypes) e.getItem());
                     menu.setVisible(false);
                     repaint();
                 }
@@ -43,7 +38,6 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     @Override
     protected void paintComponent(Graphics g) {
-        //System.out.println("PaintComp");
         g.clearRect(0, 0, getWidth(), getHeight());
         super.paintComponent(g);
         g.setColor(Color.CYAN);
@@ -65,10 +59,9 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             }
         }
 
-        System.out.println(menu.getLocation());
+        //System.out.println(menu.getLocation());
 
         if(lineClickedPoint != null){
-            System.out.println("Point not Null");
             menu.setLocation(lineClickedPoint);
             menu.setVisible(true);
         }
@@ -97,18 +90,18 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     private void redraw(){
         getGraphics().clearRect(0, 0, getWidth(), getHeight());
-    }*/
+    }
 
     private void showLinetypes(Point location) {
         menu.setLocation(location);
-        //menu.setModel(new DefaultComboBoxModel(Line.linetypes.values()));
         menu.setVisible(true);
 
-    }
+    } */
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        //System.out.println("Clicked");
+        lineClickedPoint = null;
+        menu.setVisible(false);
     }
 
     @Override
@@ -117,10 +110,8 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             Rectangle newRectangle = new Rectangle(e.getPoint());
             rectList.add(newRectangle);
             repaint();
-            //drawRectangle(newRectangle);
         }
         if(rectList.size() == 2 && connectionLine == null){
-            //drawLine();
             connectionLine = new Line(rectList.get(0),rectList.get(1), activeLinetype);
         }else if(rectList.size() == 2){
             for (Rectangle rectangle : rectList) {
@@ -134,7 +125,6 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
             for (Linepart part: connectionLine.getLinepartList()) {
                 if (part.pointInLinepart(e.getPoint())) {
-                    //showLinetypes(e.getPoint());
                     lineClickedPoint = e.getPoint();
                     repaint();
                 }
@@ -145,19 +135,13 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     @Override
     public void mouseReleased(MouseEvent e) {
         if(movingRectState){
-            //redraw();
             movingRectState = false;
 
             int x = e.getPoint().x - dragPoint.x;
             int y = e.getPoint().y - dragPoint.y;
             movingRect.setPosition( new Point(x,y));
 
-            //for (Rectangle rect:rectList) {
-              // drawRectangle(rect);
-            //}
-
             repaint();
-            //drawLine();
 
             dragPoint = null;
             movingRect = null;
@@ -177,16 +161,12 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     @Override
     public void mouseDragged(MouseEvent e) {
         if(movingRectState){
-            //redraw();
             int x = e.getPoint().x - dragPoint.x;
             int y = e.getPoint().y - dragPoint.y;
             movingRect.setPosition( new Point(x,y));
 
-            //for (Rectangle rect:rectList) {
-                //drawRectangle(rect);
-            //}
             repaint();
-            //drawLine();
+            
         }
     }
 

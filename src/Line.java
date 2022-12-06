@@ -2,7 +2,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Line {
-    //private String[] linetypes = {"STRAIGHT", "ANGLED"};
     public enum linetypes{
         STRAIGHT,
         ANGLED
