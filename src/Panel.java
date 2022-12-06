@@ -20,11 +20,11 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         addMouseMotionListener(this);
 
         menu = new JComboBox(Line.linetypes.values());
+        
         //menu.setSize(100, 50);
         menu.setPreferredSize(new Dimension(100,50));
         //menu.setLightWeightPopupEnabled(false);
         menu.setVisible(false);
-        
         // get linetypes & print in Combo-Box
         menu.addItemListener(new ItemListener() {
             @Override
@@ -68,7 +68,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         menu.setLocation(location);
         //menu.setModel(new DefaultComboBoxModel(Line.linetypes.values()));
         menu.setVisible(true);
-
+        
     }
 
     @Override

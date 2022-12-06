@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Line2D;
 
 public class Linepart {
     private Point startPoint;
@@ -18,16 +19,13 @@ public class Linepart {
         return startPoint;
     }
 
-    // Toleranz ok, 3. Part nicht klickbar -> mysterious?!
     public boolean pointInLinepart(Point p){
         final int toleranz = 5;
-/*         int spxt = startPoint.x-toleranz;
-        int epxt = endPoint.x+toleranz;
-        int spyt = startPoint.y-toleranz;
-        int epyt = endPoint.y+toleranz; */
-        return p.x >= startPoint.x-toleranz && 
+/*         return p.x >= startPoint.x-toleranz && 
                p.x <= endPoint.x+toleranz && 
                p.y >= startPoint.y-toleranz &&
-               p.y <= endPoint.y+toleranz;
+               p.y <= endPoint.y+toleranz; */
+        double dist = Line2D.ptLineDist(startPoint.x, startPoint.y, endPoint.x, endPoint.y, p.x, p.y);
+        return (dist <= toleranz && dist >= -toleranz);
     }
 }
