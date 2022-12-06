@@ -9,7 +9,6 @@ public class Frame extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Panel panel = new Panel();
-        panel.setBackground(new Color(0,255,0,64));
         add(panel);
         pack();
         setLocationRelativeTo(null);

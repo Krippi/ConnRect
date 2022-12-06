@@ -100,12 +100,12 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        lineClickedPoint = null;
-        menu.setVisible(false);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        lineClickedPoint = null;
+        menu.setVisible(false);
         if(rectList.size() <= 1){
             Rectangle newRectangle = new Rectangle(e.getPoint());
             rectList.add(newRectangle);
