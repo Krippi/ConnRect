@@ -2,8 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class Panel extends JPanel implements MouseListener, MouseMotionListener {
     private ArrayList <Rectangle> rectList = new ArrayList<>();
@@ -12,6 +11,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     private Rectangle movingRect;
     private boolean movingRectState = false;
     private Point dragPoint;
+    private Point lineClickedPoint;
 
     JComboBox menu;
 
@@ -20,9 +20,9 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         addMouseMotionListener(this);
 
         menu = new JComboBox(Line.linetypes.values());
-        
+
         //menu.setSize(100, 50);
-        menu.setPreferredSize(new Dimension(100,50));
+        //menu.setPreferredSize(new Dimension(100,50));
         //menu.setLightWeightPopupEnabled(false);
         menu.setVisible(false);
         // get linetypes & print in Combo-Box
@@ -30,17 +30,52 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
-                    System.out.println(e.getItem());
+                    lineClickedPoint = null;
                     activeLinetype = (Line.linetypes)e.getItem();
                     //connectionLine.setLinetype((Line.linetypes) e.getItem());
                     menu.setVisible(false);
+                    repaint();
                 }
             }
         });
         add(menu);
     }
 
-    private void drawRectangle(Rectangle rect){
+    @Override
+    protected void paintComponent(Graphics g) {
+        //System.out.println("PaintComp");
+        g.clearRect(0, 0, getWidth(), getHeight());
+        super.paintComponent(g);
+        g.setColor(Color.CYAN);
+        for (Rectangle rect:rectList) {
+            ((Graphics2D)g).setStroke(new BasicStroke(2));
+
+            g.fillRect(rect.getPosition().x, rect.getPosition().y, rect.getHeight(), rect.getWidth());
+        }
+
+        if(connectionLine != null){
+            connectionLine = new Line(rectList.get(0),rectList.get(1),activeLinetype);
+            g.setColor(Color.BLACK);
+            for (Linepart part : connectionLine.getLinepartList()) {
+                ((Graphics2D)g).setStroke(new BasicStroke(3));
+                ((Graphics2D)g).setRenderingHint(
+                        RenderingHints.KEY_ANTIALIASING,
+                        RenderingHints.VALUE_ANTIALIAS_ON);
+                g.drawLine(part.getStartPoint().x, part.getStartPoint().y,part.getEndPoint().x, part.getEndPoint().y);
+            }
+        }
+
+        System.out.println(menu.getLocation());
+
+        if(lineClickedPoint != null){
+            System.out.println("Point not Null");
+            menu.setLocation(lineClickedPoint);
+            menu.setVisible(true);
+        }
+
+    }
+
+    /*private void drawRectangle(Rectangle rect){
         Graphics2D graphics2D = (Graphics2D)getGraphics();
         graphics2D.setStroke(new BasicStroke(2));
         graphics2D.setColor(Color.CYAN);
@@ -62,13 +97,13 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     private void redraw(){
         getGraphics().clearRect(0, 0, getWidth(), getHeight());
-    }
+    }*/
 
     private void showLinetypes(Point location) {
         menu.setLocation(location);
         //menu.setModel(new DefaultComboBoxModel(Line.linetypes.values()));
         menu.setVisible(true);
-        
+
     }
 
     @Override
@@ -78,14 +113,15 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     @Override
     public void mousePressed(MouseEvent e) {
-        //System.out.println("Pressed");
         if(rectList.size() <= 1){
             Rectangle newRectangle = new Rectangle(e.getPoint());
             rectList.add(newRectangle);
-            drawRectangle(newRectangle);
+            repaint();
+            //drawRectangle(newRectangle);
         }
         if(rectList.size() == 2 && connectionLine == null){
-            drawLine();
+            //drawLine();
+            connectionLine = new Line(rectList.get(0),rectList.get(1), activeLinetype);
         }else if(rectList.size() == 2){
             for (Rectangle rectangle : rectList) {
                 if(rectangle.pointInRect(e.getPoint())){
@@ -98,7 +134,9 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
             for (Linepart part: connectionLine.getLinepartList()) {
                 if (part.pointInLinepart(e.getPoint())) {
-                    showLinetypes(e.getPoint());
+                    //showLinetypes(e.getPoint());
+                    lineClickedPoint = e.getPoint();
+                    repaint();
                 }
             }
         }
@@ -107,18 +145,19 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     @Override
     public void mouseReleased(MouseEvent e) {
         if(movingRectState){
-            redraw();
+            //redraw();
             movingRectState = false;
 
             int x = e.getPoint().x - dragPoint.x;
             int y = e.getPoint().y - dragPoint.y;
             movingRect.setPosition( new Point(x,y));
 
-            for (Rectangle rect:rectList) {
-               drawRectangle(rect);
-            }
+            //for (Rectangle rect:rectList) {
+              // drawRectangle(rect);
+            //}
 
-            drawLine();
+            repaint();
+            //drawLine();
 
             dragPoint = null;
             movingRect = null;
@@ -138,16 +177,16 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     @Override
     public void mouseDragged(MouseEvent e) {
         if(movingRectState){
-            redraw();
+            //redraw();
             int x = e.getPoint().x - dragPoint.x;
             int y = e.getPoint().y - dragPoint.y;
             movingRect.setPosition( new Point(x,y));
 
-            for (Rectangle rect:rectList) {
-                drawRectangle(rect);
-            }
-
-            drawLine();
+            //for (Rectangle rect:rectList) {
+                //drawRectangle(rect);
+            //}
+            repaint();
+            //drawLine();
         }
     }
 
