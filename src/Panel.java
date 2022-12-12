@@ -48,6 +48,13 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
         }
 
         if(connectionLine != null){
+
+
+            if(rectList.get(0).pointInRect(rectList.get(1).getPosition())
+                && rectList.get(0).pointInRect(rectList.get(1).getPosition())){
+
+            }
+
             connectionLine = new Line(rectList.get(0),rectList.get(1),activeLinetype);
             g.setColor(Color.BLACK);
             for (Linepart part : connectionLine.getLinepartList()) {
@@ -66,6 +73,10 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             menu.setVisible(true);
         }
 
+    }
+
+    private boolean rectsOverlap(Rectangle rect2){
+        return false;
     }
 
     /*private void drawRectangle(Rectangle rect){

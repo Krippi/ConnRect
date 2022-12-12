@@ -25,5 +25,6 @@ ok 5 - "NEU" Rectangle soll eine Methode habe die einen Punkt
 ok 6 - Linientoleranz prüfen
 ok 7 - Panel.java -> showLinetypes() & Line.java -> getLinetypes() anpassen
     für Drop-Down Menü -> Auswahl für Line-Methode
+   8 - rectsOverlap()
 
 */
