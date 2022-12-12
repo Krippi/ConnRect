@@ -77,6 +77,7 @@ public class Line {
             x = x - xDistanceBetween;
             end = new Point(x - 1,y);
             endThird = (Point)end.clone();
+            endThird.x = startThird.x;
 
             linepartList.add(new Linepart(start, end));
         }
@@ -108,7 +109,6 @@ public class Line {
             y = y + yDistanceBetween;
             end = new Point(x,y -1);
             startThird = (Point) end.clone();
-            startThird.y += 1;
 
             linepartList.add(new Linepart(start, end));
         }
@@ -122,7 +122,7 @@ public class Line {
             y = y - yDistanceBetween;
             end = new Point(x,y);
             endThird = (Point)end.clone();
-            endThird.y -= 1;
+            endThird.y = startThird.y;
 
             linepartList.add(new Linepart(start, end));
         }
