@@ -47,14 +47,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             g.fillRect(rect.getPosition().x, rect.getPosition().y, rect.getHeight(), rect.getWidth());
         }
 
-        if(connectionLine != null){
-
-
-            if(rectList.get(0).pointInRect(rectList.get(1).getPosition())
-                && rectList.get(0).pointInRect(rectList.get(1).getPosition())){
-
-            }
-
+        if(connectionLine != null && !rectList.get(0).rectsOverlap(rectList.get(1))){
             connectionLine = new Line(rectList.get(0),rectList.get(1),activeLinetype);
             g.setColor(Color.BLACK);
             for (Linepart part : connectionLine.getLinepartList()) {

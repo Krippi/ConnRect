@@ -37,7 +37,7 @@ public class Rectangle{
         this.position = newPos;
     }
     
-    private boolean rectsOverlap(Rectangle rect){
+    public boolean rectsOverlap(Rectangle rect){
         Point tl = rect.getPosition();
         Point tr = new Point(rect.getPosition().x+rect.WIDTH,rect.getPosition().y);
         Point bl = new Point(rect.getPosition().x,rect.getPosition().y+HEIGHT);
