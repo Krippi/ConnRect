@@ -37,10 +37,17 @@ public class Rectangle{
         this.position = newPos;
     }
     
-    private boolean rectsOverlap(Rectangle rect2){
-        Rectangle2D rect1;
+    private boolean rectsOverlap(Rectangle rect){
+        Point tl = rect.getPosition();
+        Point tr = new Point(rect.getPosition().x+rect.WIDTH,rect.getPosition().y);
+        Point bl = new Point(rect.getPosition().x,rect.getPosition().y+HEIGHT);
+        Point br = new Point(rect.getPosition().x+rect.WIDTH,rect.getPosition().y+HEIGHT);
+
+        // check top left      check top right    check bottom left  check bottom right
+        if (pointInRect(tl) || pointInRect(tr) || pointInRect(bl) || pointInRect(br)){
+            return true;
+        }
         return false;
-        
     }
 
 }
