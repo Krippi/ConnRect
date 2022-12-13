@@ -21,7 +21,7 @@ public class Linepart {
 
     public boolean pointInLinepart(Point p){
         final int toleranz = 5;
-        double dist = Line2D.ptLineDist(startPoint.x, startPoint.y, endPoint.x, endPoint.y, p.x, p.y);
+        double dist = Line2D.ptSegDist(startPoint.x, startPoint.y, endPoint.x, endPoint.y, p.x, p.y);
         return (dist <= toleranz && dist >= -toleranz);
     }
 }

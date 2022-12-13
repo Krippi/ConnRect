@@ -75,10 +75,6 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
 
     }
 
-    private boolean rectsOverlap(Rectangle rect2){
-        return false;
-    }
-
     /*private void drawRectangle(Rectangle rect){
         Graphics2D graphics2D = (Graphics2D)getGraphics();
         graphics2D.setStroke(new BasicStroke(2));

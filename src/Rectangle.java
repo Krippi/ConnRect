@@ -35,4 +35,10 @@ public class Rectangle{
     public void setPosition(Point newPos){
         this.position = newPos;
     }
+    
+    private boolean rectsOverlap(Rectangle rect2){
+        return false;
+        
+    }
+
 }
