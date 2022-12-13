@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.awt.geom.Rectangle2D;
 
 public class Rectangle{
     private Point position;
@@ -37,6 +38,7 @@ public class Rectangle{
     }
     
     private boolean rectsOverlap(Rectangle rect2){
+        Rectangle2D rect1;
         return false;
         
     }
