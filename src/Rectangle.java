@@ -17,15 +17,25 @@ public class Rectangle{
     public Integer getHeight(){
         return HEIGHT;
     }
-    // gibt Koordinaten vom Mittelpunkt wieder
-    // für Verbindung Straight Line
+
+    /**
+     * Gibt Koordinaten vom Mittelpunkt eines Rechtecks wieder.
+     * @return Mittelpunkt als Point
+     * @see Point 
+     */
     public Point getMidPoint(){
         Point midPoint = new Point();
         midPoint.x = position.x + WIDTH/2;
         midPoint.y = position.y + HEIGHT/2;
         return midPoint;
     }
-    // return true, wenn Punkt im Rechteck liegt
+
+    /**
+     * Prüft, ob ein Punkt im Rechteck liegt.
+     * @return Gibt true zurück, wenn der übergebene Punkt im Rechteck liegt.
+     * @param p zu prüfender Punkt
+     * @see Point 
+     */
     public boolean pointInRect(Point p){
         return p.x <= this.position.x+WIDTH && 
                p.x >= this.position.x && 
@@ -33,10 +43,21 @@ public class Rectangle{
                p.y >= this.position.y;
     }
 
+    /**
+     * Übergebe neue Position vom Rechteck
+     * @param newPos neuer Punkt
+     * @see Point 
+     */
     public void setPosition(Point newPos){
         this.position = newPos;
     }
     
+    /**
+     * Prüft, ob das übergebene Rechteck überlappt
+     * @return Gibt true zurück, wenn das übergebene Rechteck an mindestens einer Stelle mit dem Rechteck überlappt.
+     * @param rect Objekt vom Typ Rectangle
+     * @see Point 
+     */
     public boolean rectsOverlap(Rectangle rect){
         Point tl = rect.getPosition();
         Point tr = new Point(rect.getPosition().x+rect.WIDTH,rect.getPosition().y);
