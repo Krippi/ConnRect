@@ -1,3 +1,4 @@
+//N
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -132,7 +133,6 @@ public class Line {
             linepartList.add(new Linepart(startThird, endThird));
         }
     }
-
 
     public ArrayList<Linepart> getLinepartList() {
         return linepartList;
