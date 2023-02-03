@@ -1,3 +1,4 @@
+//N
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     private void redraw(){
         getGraphics().clearRect(0, 0, getWidth(), getHeight());
     }
-
+//M
     private void showLinetypes(Point location) {
         menu.setLocation(location);
         menu.setVisible(true);
@@ -124,6 +125,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
             }
 
             for (Linepart part: connectionLine.getLinepartList()) {
+                //M
                 if (part.pointInLinepart(e.getPoint())) {
                     lineClickedPoint = e.getPoint();
                     repaint();
