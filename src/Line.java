@@ -10,24 +10,29 @@ public class Line {
     private ArrayList<Linepart> linepartList = new ArrayList<>();
 
     public Line(Rectangle rect1, Rectangle rect2, linetypes linetype){
+        int r1_X = rect1.getPosition().x;
+        int r1_Y = rect1.getPosition().y;
+        int r1_H = rect1.getHeight();
+        int r2_X = rect2.getPosition().x;
+        int r2_Y = rect2.getPosition().y;
+        int r2_H = rect1.getHeight();
+
         switch (linetype){
             case STRAIGHT:
                 createStraightLine(rect1, rect2);
                 break;
             case ANGLED:
-                if( rect1.getPosition().x < rect2.getPosition().x &&
-                        (rect1.getPosition().y == rect2.getPosition().y ||
-                                (rect1.getPosition().y < rect2.getPosition().y && rect1.getPosition().y + rect1.getHeight() > rect2.getPosition().y) ||
-                                (rect1.getPosition().y < rect2.getPosition().y + rect2.getHeight() && rect1.getPosition().y + rect1.getHeight() > rect2.getPosition().y + rect2.getHeight()))) {
-                    createAngledHorizontalLine(rect1, rect2);
-                }else if( rect1.getPosition().x > rect2.getPosition().x &&
-                        (rect1.getPosition().y == rect2.getPosition().y ||
-                                (rect1.getPosition().y < rect2.getPosition().y && rect1.getPosition().y + rect1.getHeight() > rect2.getPosition().y) ||
-                                (rect1.getPosition().y < rect2.getPosition().y + rect2.getHeight() && rect1.getPosition().y + rect1.getHeight() > rect2.getPosition().y + rect2.getHeight()))) {
-                    createAngledHorizontalLine(rect2, rect1);
-                }else if(rect1.getPosition().y < rect2.getPosition().y){
+               if(r1_Y == r2_Y ||
+                       (r1_Y < r2_Y && r1_Y + r1_H > r2_Y) ||
+                       (r1_Y < r2_Y + r2_H && r1_Y + r1_H > r2_Y + r2_H)){
+                   if(r1_X < r2_X ){
+                       createAngledHorizontalLine(rect1, rect2);
+                   }else{
+                       createAngledHorizontalLine(rect2, rect1);
+                   }
+                }else if(r1_Y < r2_Y){
                     createAngledVerticalLine(rect1,rect2);
-                }else if(rect1.getPosition().y > rect2.getPosition().y){
+                }else if(r1_Y > r2_Y){
                     createAngledVerticalLine(rect2,rect1);
                 }
                 break;
