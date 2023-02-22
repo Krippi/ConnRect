@@ -5,11 +5,10 @@ import java.util.ArrayList;
 public class Line {
     // Enum zur Auswahl des Linientyps
     public enum linetypes{
-        STRAIGHT,           // Gerade Linie
-        ANGLED              // Geknickte Linie
+        STRAIGHT,
+        ANGLED
     }
-    // Liste von Linienteilen, aus denen die Linie besteht
-    private ArrayList<Linepart> linepartList = new ArrayList<>();
+    private ArrayList<Linepart> linepartList = new ArrayList<>(); // Liste von Linienteilen, aus denen die Linie besteht
 
     /**
      * Konstruktor der Line-Klasse. Handelt unteranderm das erstellen der Lineparts
