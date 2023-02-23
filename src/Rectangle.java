@@ -1,6 +1,5 @@
 //M
 import java.awt.Point;
-import java.awt.geom.Rectangle2D;
 
 public class Rectangle{
     private Point position;

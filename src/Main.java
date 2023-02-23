@@ -1,8 +1,8 @@
 //M
 public class Main {
-
+    private static Frame window;
     public static void main(String[] args) {
-        Frame window = new Frame("Connect Rectangles");
+        window = new Frame("Connect Rectangles");
     }
 }
 
