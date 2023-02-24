@@ -4,8 +4,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Klasse erstellt von Marius Waterkotte & Niclas Leroy
- * Kommentiert von Niclas Leroy
+ * Klasse erstellt und kommentiert von Marius Waterkotte & Niclas Leroy
  */
 public class Frame extends JFrame{
     private Panel panel;
