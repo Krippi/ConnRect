@@ -1,7 +1,9 @@
-//N
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Klasse erstellt und kommentiert von Niclas Leroy
+ */
 public class Line {
     // Enum zur Auswahl des Linientyps
     public enum linetypes{

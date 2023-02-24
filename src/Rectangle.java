@@ -1,6 +1,9 @@
-//M
+
 import java.awt.Point;
 
+/**
+ * Klasse erstellt und kommentiert von Marius Waterkotte
+ */
 public class Rectangle{
     private Point position;
     private int WIDTH = 50;  // statisch, ggf. dynamisch als Erweiterung

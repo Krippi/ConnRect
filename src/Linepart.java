@@ -1,6 +1,8 @@
-//M
 import java.awt.*;
 
+/**
+ * Klasse erstellt und kommentiert von Marius Waterkotte
+ */
 public class Linepart {
     private Point startPoint;
     private Point endPoint;

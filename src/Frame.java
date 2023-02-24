@@ -1,6 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Klasse erstellt von Marius Waterkotte & Niclas Leroy
+ * Kommentiert von Niclas Leroy
+ */
 public class Frame extends JFrame{
     private Panel panel;
     /**
@@ -14,7 +18,7 @@ public class Frame extends JFrame{
         setVisible(true);                                   // Setzen des Fensters auf sichtbar
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     // Festlegen des Verhaltens des Fensters beim Schließen
         //N
-        panel = new Panel();                          // Erzeugen eines neuen Panels
+        panel = new Panel();                                // Erzeugen eines neuen Panels
         add(panel);                                         // Hinzufügen des Panels zum Frame
         pack();                                             // Anpassen der Größe des Frames an die Größe des Panels
         setLocationRelativeTo(null);                        // Zentrieren des Frames auf dem Bildschirm

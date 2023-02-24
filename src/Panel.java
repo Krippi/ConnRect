@@ -1,9 +1,11 @@
-//N
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
+/**
+ * Klasse erstellt und kommentiert von Niclas Leroy
+ */
 public class Panel extends JPanel implements MouseListener, MouseMotionListener {
     private ArrayList <Rectangle> rectList = new ArrayList<>();         // Liste mit allen Rechtecken auf dem Panel
     private Line connectionLine;                                        // Linie, die die Rechtecke miteinander verbindet
