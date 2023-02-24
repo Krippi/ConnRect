@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Klasse erstellt von Marius Waterkotte & Niclas Leroy
@@ -23,6 +27,19 @@ public class Frame extends JFrame{
         pack();                                             // Anpassen der Größe des Frames an die Größe des Panels
         setLocationRelativeTo(null);                        // Zentrieren des Frames auf dem Bildschirm
         setSize(800,600);                       // Festlegen der Größe des Fensters auf 800x600 Pixel
+
+
+        //M
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        JMenu helpMenu = new JMenu("Help");
+        menuBar.add(helpMenu);
+
+        helpMenu.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                JOptionPane.showMessageDialog(Frame.this, "Hallo du da \nTest","Information", 1);
+            }
+        });
 
     }
 
