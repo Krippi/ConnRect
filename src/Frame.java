@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -30,14 +28,20 @@ public class Frame extends JFrame{
 
 
         //M
-        JMenuBar menuBar = new JMenuBar();
-        setJMenuBar(menuBar);
-        JMenu helpMenu = new JMenu("Help");
-        menuBar.add(helpMenu);
+        JMenuBar menuBar = new JMenuBar();                  // Erzeugen einer Menübar
+        setJMenuBar(menuBar);                               // Hinzufügen der Menübar zum Frame
+        JMenu helpMenu = new JMenu("Help");              // Erzeugen eines Menüpunktes mit Titel "Help"
+        menuBar.add(helpMenu);                              // Hinzufügen des Menüpunktes zur Menübar
 
+        // Abfrage, ob mit linker Maustaste auf Help-Menü geklickt wurde, um die Hilfe anzuzeigen
         helpMenu.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                JOptionPane.showMessageDialog(Frame.this, "Hallo du da \nTest","Information", 1);
+                if (e.getButton() == MouseEvent.BUTTON1){
+                    JOptionPane.showMessageDialog(Frame.this, "1. Mit einer beliebigen Maustaste auf die leere Zeichenfläche klicken, um ein Rechteck zu erstellen.\n"+
+                    "2. Erneut mit einer beliebigen Maustaste auf die leere Zeichenfläche klicken, um ein zweites Rechtecke zu erstellen.\n"+
+                    "3. Zum Ändern der Linienform mit einer beliebigen Maustaste auf die Linie klicken.\n\n"+
+                    "Die Rechtecke können per Drag&Drop verschoben werden.","Information", 1);
+                }
             }
         });
 

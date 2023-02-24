@@ -44,7 +44,7 @@ public class Panel extends JPanel implements MouseListener, MouseMotionListener 
     }
 
     /**
-     * Diese Methode wird aufgerunfen, wenn das Panel neu gezeichnet wird. Sie löscht zuerst
+     * Diese Methode wird aufgerufen, wenn das Panel neu gezeichnet wird. Sie löscht zuerst
      * den alten Inhalt und zeichnet dann alle Rechtecke sowie die aktive Linie, wenn es eine gibt.
      * Sollte der Benutzer auf die Linie klicken, wird auch die ComboBox an der geklickten Stelle angezeigt.
      * @param g Grafik Objekt (In diesem Fall wird die Panel Grafik genommen)
