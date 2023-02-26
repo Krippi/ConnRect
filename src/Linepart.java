@@ -57,14 +57,14 @@ public class Linepart {
         double Xdiff = endX - startX;
         double Ydiff = endY - startY;
         
-        // Berechne u, den normalisierten Abstand des Projektionsvektors des Punkts zur Linie
+        // Berechne skalar, den normalisierten Abstand des Projektionsvektors des Punkts zur Linie
         double skalar = ((pointX - startX) * Xdiff + (pointY - startY) * Ydiff) / (Xdiff * Xdiff + Ydiff * Ydiff);
         
-        // Überprüfe, ob u größer als 1 ist (der Punkt befindet sich außerhalb des Linienabschnitts)
+        // Überprüfe, ob skalar größer als 1 ist (der Punkt befindet sich außerhalb des Linienabschnitts)
         if (skalar > 1) {
             skalar = 1;
         }
-        // Überprüfe, ob u kleiner als 0 ist (der Punkt befindet sich außerhalb des Linienabschnitts)
+        // Überprüfe, ob skalar kleiner als 0 ist (der Punkt befindet sich außerhalb des Linienabschnitts)
         if (skalar < 0) {
             skalar = 0;
         }
